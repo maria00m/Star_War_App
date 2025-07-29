@@ -41,11 +41,9 @@ export default function PlanetDetails() {
   const openFilmsModal = async (planet: Planet) => {
     setModalTitle(`Films featuring ${planet.name}`)
     
-    // Fetch film details if not already loaded
     const newFilmDetails = await fetchFilmDetails(planet.films)
     const allFilmDetails = { ...filmDetails, ...newFilmDetails }
     
-    // Get the film objects for the modal
     const films = planet.films.map(url => allFilmDetails[url]).filter(Boolean)
     setSelectedFilms(films)
     setModalOpen(true)
@@ -57,24 +55,7 @@ export default function PlanetDetails() {
     setModalTitle('')
   }
 
-  // const fetchData = async () => {
-  //   try {
-  //     setLoading(true)
-  //     setError(null)
-  //     const response = await fetch('https://swapi.info/api/planets')
-      
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`)
-  //     }
-      
-  //     const data = await response.json()
-  //     setPlanets(Array.isArray(data.results) ? data.results : [])
-  //   } catch (err) {
-  //     setError(err instanceof Error ? err.message : 'Unknown error occurred')
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
+
 const fetchData = async () => {
   try {
     setLoading(true)
@@ -86,9 +67,8 @@ const fetchData = async () => {
     }
     
     const data = await response.json()
-    console.log('API Response:', data) // Debug log
+    // console.log('API Response:', data) // Debug log
     
-    // Handle different possible response structures
     let planetsArray: Planet[] = []
     
     if (Array.isArray(data)) {
@@ -102,7 +82,7 @@ const fetchData = async () => {
       planetsArray = []
     }
     
-    console.log('Planets array:', planetsArray) // Debug log
+    // console.log('Planets array:', planetsArray) // Debug log
     setPlanets(planetsArray)
   } catch (err) {
     console.error('Fetch error:', err)

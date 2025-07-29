@@ -7,7 +7,6 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -23,7 +22,7 @@ export default function Nav() {
     <nav className="bg-black border-b border-yellow-400">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          {/* Star Wars Logo */}
+    
           <div className="flex items-center">
             <Link href="/" className="flex items-center py-4">
               <Image 
@@ -36,7 +35,6 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* Desktop Navigation Links - Only show on desktop */}
           <div className="hidden md:flex md:justify-end md:flex-row">
             <Link
               href="/characters"
@@ -70,7 +68,7 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setOpen(!open)}
@@ -88,7 +86,6 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile Menu - Only show when open and on mobile */}
       {open && (
         <div className="md:hidden bg-black border-t border-yellow-400">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">

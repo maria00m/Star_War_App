@@ -41,11 +41,9 @@ export default function FilmDetails() {
   const openCharactersModal = async (film: Film) => {
     setModalTitle(`Characters in ${film.title}`)
     
-    // Fetch character details if not already loaded
     const newCharacterDetails = await fetchCharacterDetails(film.characters)
     const allCharacterDetails = { ...characterDetails, ...newCharacterDetails }
     
-    // Get the character objects for the modal
     const characters = film.characters.map(url => allCharacterDetails[url]).filter(Boolean)
     setSelectedCharacters(characters)
     setModalOpen(true)
@@ -68,9 +66,8 @@ export default function FilmDetails() {
       }
       
       const data = await response.json()
-      console.log('API Response:', data) // Debug log
+      // console.log('API Response:', data) // Debug log
       
-      // Handle different possible response structures
       let filmsArray: Film[] = []
       
       if (Array.isArray(data)) {
@@ -84,7 +81,7 @@ export default function FilmDetails() {
         filmsArray = []
       }
       
-      console.log('Films array:', filmsArray) // Debug log
+      // console.log('Films array:', filmsArray) // Debug log
       setFilms(filmsArray)
     } catch (err) {
       console.error('Fetch error:', err)
