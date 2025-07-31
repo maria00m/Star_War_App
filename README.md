@@ -9,6 +9,11 @@ A simple web application to explore the Star Wars universe! Built with Next.js a
 - **Browse Films**: Check out Star Wars movies and their details
 - **Starships & Vehicles**: Learn about different ships and vehicles
 
+## to open the documenation :
+-npx typedoc 
+-npx http-server docs -p 8080
+## to test the project through unit testing:
+-npm test
 ##  Technologies Used
 
 - **Next.js** - React framework for building web apps
@@ -18,8 +23,8 @@ A simple web application to explore the Star Wars universe! Built with Next.js a
 - **SWAPI** - Star Wars API for getting the data
 
 ## How to run this project
-
+- npm run dev
 ### Step 1: Download the code
 ```bash
-git clone <your-repo-url>
+git clone <Star_War_App>
 cd Star_War_App
