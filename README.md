@@ -1,4 +1,4 @@
-#  Star Wars App
+# Star Wars App
 
 A simple web application to explore the Star Wars universe! Built with Next.js and TypeScript.
 
@@ -9,9 +9,11 @@ A simple web application to explore the Star Wars universe! Built with Next.js a
 - **Browse Films**: Check out Star Wars movies and their details
 - **Starships & Vehicles**: Learn about different ships and vehicles
 
-## to open the documenation :
--npx typedoc 
--npx http-server docs -p 8080
+## To open the documentation:
+
+```bash
+npx typedoc
+npx http-server docs -p 8080
 ## to test the project through unit testing:
 -npm test
 ##  Technologies Used
