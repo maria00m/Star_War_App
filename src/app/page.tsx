@@ -1,7 +1,26 @@
 import Link from 'next/link'
 import Image from 'next/image'
-
+ 
+/**
+ * Simple page component (unused)
+ * @returns {JSX.Element} Basic page with home title and about link
+ */
+export  function Page() {
+  return (
+    <div>
+      <h1>Home</h1>
+      <Link href="/about">About</Link>
+    </div>
+  )
+}
+/**
+ * Main home page component for Star Wars app
+ * Shows welcome screen with navigation buttons
+ * @returns {JSX.Element} Home page with hero section and action buttons
+ */
 export default function Home() {
+
+
   return (
     <div className="bg-[url('/images/AvengersAssembleScene-TheAvengers2012MovieClipHD-ezgif.com-video-to-webp-converter.webp')] bg-cover bg-center w-full h-screen relative overflow-hidden">
       {/* Dark overlay for better text readability */}

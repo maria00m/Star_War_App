@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Modal from '../ui/Modal'
 import { Character, Film } from '../types'
 import LoadingSpinner from '../ui/NextUISpinner'
-
+/**
+ * Character details component - displays Star Wars characters with film information
+ * @returns {JSX.Element} Character details page component
+ */
 export default function CharacterDetails() {
   const [characters, setCharacters] = useState<Character[]>([])
   const [filmDetails, setFilmDetails] = useState<Record<string, Film>>({})
@@ -12,12 +15,21 @@ export default function CharacterDetails() {
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedFilms, setSelectedFilms] = useState<Film[]>([])
   const [modalTitle, setModalTitle] = useState('')
-
+ /**
+   * Extracts ID from Star Wars API URL
+   * @param {string} url - Full API URL to extract ID from
+   * @returns {string} Extracted ID from URL
+   */
   const extractId = (url: string): string => {
     const parts = url.split('/').filter(part => part !== '')
     return parts[parts.length - 1]
   }
 
+  /**
+   * Fetches film details from Star Wars API
+   * @param {string[]} filmUrls - Array of film API URLs to fetch
+   * @returns {Promise<Record<string, Film>>} Promise resolving to film details object
+   */
   const fetchFilmDetails = async (filmUrls: string[]) => {
     const newFilmDetails: Record<string, Film> = {}
     
@@ -37,7 +49,11 @@ export default function CharacterDetails() {
     setFilmDetails(prev => ({ ...prev, ...newFilmDetails }))
     return newFilmDetails
   }
-
+  /**
+   * Opens modal displaying films for selected character
+   * @param {Character} character - Character object containing film URLs
+   * @returns {Promise<void>} Promise that resolves when modal opens
+   */
   const openFilmsModal = async (character: Character) => {
     setModalTitle(`Films featuring ${character.name}`)
     
@@ -49,13 +65,19 @@ export default function CharacterDetails() {
     setSelectedFilms(films)
     setModalOpen(true)
   }
-
+ /**
+   * Closes the films modal and resets state
+   * @returns {void}
+   */
   const closeModal = () => {
     setModalOpen(false)
     setSelectedFilms([])
     setModalTitle('')
   }
-
+ /**
+   * Fetches character data from Star Wars API
+   * @returns {Promise<void>} Promise that resolves when data is fetched
+   */
   const fetchData = async () => {
     try {
       setLoading(true)

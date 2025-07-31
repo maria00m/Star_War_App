@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Modal from '../ui/Modal'
 import { Film, Character } from '../types'
 import LoadingSpinner from '../ui/NextUISpinner'
-
+/**
+ * Shows Star Wars films with character details
+ * @returns {JSX.Element} Film details component
+ */
 export default function FilmDetails() {
   const [films, setFilms] = useState<Film[]>([])
   const [characterDetails, setCharacterDetails] = useState<Record<string, Character>>({})
@@ -12,12 +15,20 @@ export default function FilmDetails() {
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedCharacters, setSelectedCharacters] = useState<Character[]>([])
   const [modalTitle, setModalTitle] = useState('')
-
+  /**
+   * Gets ID from URL string
+   * @param {string} url - API URL to extract ID from
+   * @returns {string} Extracted ID
+   */
   const extractId = (url: string): string => {
     const parts = url.split('/').filter(part => part !== '')
     return parts[parts.length - 1]
   }
-
+  /**
+   * Fetches character data from Star Wars API
+   * @param {string[]} characterUrls - Array of character API URLs
+   * @returns {Promise<Record<string, Character>>} Character details object
+   */
   const fetchCharacterDetails = async (characterUrls: string[]) => {
     const newCharacterDetails: Record<string, Character> = {}
     
@@ -37,7 +48,11 @@ export default function FilmDetails() {
     setCharacterDetails(prev => ({ ...prev, ...newCharacterDetails }))
     return newCharacterDetails
   }
-
+  /**
+   * Opens modal with film characters
+   * @param {Film} film - Film object containing character URLs
+   * @returns {Promise<void>} Promise that resolves when modal opens
+   */
   const openCharactersModal = async (film: Film) => {
     setModalTitle(`Characters in ${film.title}`)
     
@@ -49,6 +64,10 @@ export default function FilmDetails() {
     setModalOpen(true)
   }
 
+  /**
+   * Closes the character modal
+   * @returns {void}
+   */
   const closeModal = () => {
     setModalOpen(false)
     setSelectedCharacters([])

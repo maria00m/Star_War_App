@@ -1,0 +1,32 @@
+{
+  "entryPoints": [
+    "src/app/(components)/types/index.ts",
+    "src/app/(components)/characterDetails/page.tsx",
+    "src/app/(components)/vehiclesDetails/page.tsx",
+    "src/app/(components)/planetsDetails/page.tsx",
+    "src/app/(components)/starShipDetails/page.tsx",
+    "src/app/(components)/filmDetails/page.tsx",
+    "src/lib"
+  ],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/node_modules/**",
+    "**/__tests__/**",
+    ".next/**/*"
+  ],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "readme": "README.md",
+  "name": "Star Wars App Documentation",
+  "theme": "default",
+  "tsconfig": "./tsconfig.json",
+  "validation": {
+    "notExported": false,
+    "invalidLink": false,
+    "notDocumented": false
+  }
+}

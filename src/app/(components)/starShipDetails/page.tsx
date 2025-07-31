@@ -4,7 +4,11 @@ import React, { useEffect, useState } from 'react'
 import Modal from '../ui/Modal'
 import { Film, Starship } from '../types'
 import LoadingSpinner from '../ui/NextUISpinner'
-
+/**
+ * Starship details component - displays Star Wars starships with film information
+ * Fetches starship data from SWAPI and shows detailed information in cards
+ * @returns {JSX.Element} Starship details page component with grid layout
+ */
 export default function StarshipDetails() {
   const [starships, setStarships] = useState<Starship[]>([])
   const [filmDetails, setFilmDetails] = useState<Record<string, Film>>({})
@@ -13,12 +17,21 @@ export default function StarshipDetails() {
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedFilms, setSelectedFilms] = useState<Film[]>([])
   const [modalTitle, setModalTitle] = useState('')
-
+ /**
+   * Extracts ID from Star Wars API URL
+   * @param {string} url - Full API URL to extract ID from
+   * @returns {string} Extracted ID from the last segment of URL
+   */
   const extractId = (url: string): string => {
     const parts = url.split('/').filter(part => part !== '')
     return parts[parts.length - 1]
   }
 
+  /**
+   * Fetches film details from Star Wars API for given URLs
+   * @param {string[]} filmUrls - Array of film API URLs to fetch
+   * @returns {Promise<Record<string, Film>>} Promise resolving to film details object keyed by URL
+   */
   const fetchFilmDetails = async (filmUrls: string[]) => {
     const newFilmDetails: Record<string, Film> = {}
     
@@ -38,7 +51,11 @@ export default function StarshipDetails() {
     setFilmDetails(prev => ({ ...prev, ...newFilmDetails }))
     return newFilmDetails
   }
-
+ /**
+   * Opens modal displaying films featuring the selected starship
+   * @param {Starship} starship - Starship object containing film URLs and details
+   * @returns {Promise<void>} Promise that resolves when modal opens with film data
+   */
   const openFilmsModal = async (starship: Starship) => {
     setModalTitle(`Films featuring ${starship.name}`)
     
@@ -52,12 +69,20 @@ export default function StarshipDetails() {
     setModalOpen(true)
   }
 
+  /**
+   * Closes the films modal and resets modal state
+   * @returns {void}
+   */
   const closeModal = () => {
     setModalOpen(false)
     setSelectedFilms([])
     setModalTitle('')
   }
-
+ /**
+   * Fetches starship data from Star Wars API
+   * Handles loading states and error management
+   * @returns {Promise<void>} Promise that resolves when starship data is fetched
+   */
   const fetchData = async () => {
     try {
       setLoading(true)

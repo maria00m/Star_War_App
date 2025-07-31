@@ -1,12 +1,22 @@
-"use client"
+'use client'
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image'
 
+/**
+ * Navigation component for Star Wars application
+ * Provides responsive navigation with mobile hamburger menu
+ * @returns {JSX.Element} A responsive navigation component with Star Wars theming
+ */
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Handles clicks outside the dropdown to close mobile menu
+   * @param {MouseEvent} event - Mouse click event
+   * @returns {void}
+   */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -22,7 +32,6 @@ export default function Nav() {
     <nav className="bg-black border-b border-yellow-400">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-    
           <div className="flex items-center">
             <Link href="/" className="flex items-center py-4">
               <Image 
@@ -68,7 +77,6 @@ export default function Nav() {
             </Link>
           </div>
 
-          
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setOpen(!open)}
@@ -87,7 +95,7 @@ export default function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-black border-t border-yellow-400">
+        <div className="md:hidden bg-black border-t border-yellow-400" ref={dropdownRef}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href="/characters"

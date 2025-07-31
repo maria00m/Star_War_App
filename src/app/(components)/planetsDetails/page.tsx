@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Modal from '../ui/Modal'
 import { Planet, Film } from '../types'
 import LoadingSpinner from '../ui/NextUISpinner'
-
+/**
+ * Planet details component - displays Star Wars planets with film information
+ * @returns {JSX.Element} Planet details page component
+ */
 export default function PlanetDetails() {
   const [planets, setPlanets] = useState<Planet[]>([])
   const [filmDetails, setFilmDetails] = useState<Record<string, Film>>({})
@@ -13,11 +16,21 @@ export default function PlanetDetails() {
   const [selectedFilms, setSelectedFilms] = useState<Film[]>([])
   const [modalTitle, setModalTitle] = useState('')
 
+  /**
+   * Extracts ID from Star Wars API URL
+   * @param {string} url - Full API URL to extract ID from
+   * @returns {string} Extracted ID from URL
+   */
   const extractId = (url: string): string => {
     const parts = url.split('/').filter(part => part !== '')
     return parts[parts.length - 1]
   }
 
+  /**
+   * Fetches film details from Star Wars API
+   * @param {string[]} filmUrls - Array of film API URLs to fetch
+   * @returns {Promise<Record<string, Film>>} Promise resolving to film details object
+   */
   const fetchFilmDetails = async (filmUrls: string[]) => {
     const newFilmDetails: Record<string, Film> = {}
     
